@@ -12,11 +12,49 @@ const selectors = {
 Vue.component("consultant-finder-distance-search", {
   data: function() {
     return {
-      userSuppliedLocation: "",
+      userSuppliedLocation: {},
+      lat: "",
+      lng: "",
+      city: "",
       browserSuppliedLocation: "",
       distanceRadius: "",
       distanceMetricUnit: ""
     };
+  },
+  methods: {
+    setExistingFilters: function() {
+      if (window.location.search.indexOf(this.radioGroup) > -1) {
+        const params = router.history.current.query[this.radioGroup];
+        this.selectedRadioButtons = params;
+      }
+    }
+  },
+  mounted: function() {
+    var parentMethods = this.$parent.$options.methods;
+    this.autocomplete = new google.maps.places.Autocomplete(
+      this.$refs.autocomplete,
+      { types: ["geocode"] }
+    );
+
+    this.autocomplete.addListener("place_changed", () => {
+      let place = this.autocomplete.getPlace();
+      let ac = place.address_components;
+      this.lat = place.geometry.location.lat();
+      this.lng = place.geometry.location.lng();
+      this.city = ac[0]["short_name"];
+
+      parentMethods.addQueryStrings("lat", this.lat);
+      parentMethods.addQueryStrings("lng", this.lng);
+      parentMethods.addQueryStrings("city", this.city);
+    });
+  },
+  watch: {
+    distanceRadius: function() {
+      this.$parent.$options.methods.addQueryStrings(
+        "radius",
+        this.distanceRadius
+      );
+    }
   }
 });
 
@@ -40,8 +78,6 @@ Vue.component("consultant-finder-checkboxes", {
         console.log(params);
         const paramsArray = params.split(",");
         console.log(paramsArray);
-        //const param
-        //console.log(params);
 
         if (Array.isArray(paramsArray)) {
           console.log("is array");

@@ -36,6 +36,26 @@
 			<!-- BE to loop this. End -->
 		</consultant-finder-checkboxes>
 		<br />
+		<consultant-finder-distance-search inline-template>
+			<div class="consultant-finder__distance-search">
+				<div class="consultant-finder__location-search">
+					<div class="consultant-finder__location-search-field">
+						<input ref="autocomplete" placeholder="Search" v-model="userSuppliedLocation" class="consultant-finder__location-search-input search-location"
+						 onfocus="value = ''" type="text" />
+					</div>
+					<div class="consultant-finder__location-browser-detect">
+						or <a href="">Use my current location</a>
+					</div>
+				</div>
+				<div class="consultant-finder__location-radius">
+					<div><input class="consultant-finder__location-search-input" type="number" v-model="distanceRadius"></div>
+					{{ distanceRadius }}
+					<div>Mile(s)</div>
+				</div>
+			</div>
+			<div>Search</div>
+		</consultant-finder-distance-search>
+		<br />
 
 
 		<consultant-finder-radio-buttons inline-template radio-group="gender">
@@ -45,13 +65,13 @@
 					<label for="male">Male</label>
 					<input type="radio" id="female" value="female" v-model="selectedRadioButtons" />
 					<label for="female">Femlae</label>
-					<br />
-					<span>Chosen gender: {{ selectedRadioButtons }}</span>
 				</div>
 			</div>
 			<!-- gender options end -->
 		</consultant-finder-radio-buttons>
 	</div>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYkSgTZqEDGrZczpPkVa8udHcNLkkmdE8&amp;libraries=places,geometry&amp;region=GB"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
 	<script src="https://npmcdn.com/vue-router/dist/vue-router.js"></script>
