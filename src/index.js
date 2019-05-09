@@ -26,13 +26,19 @@ Vue.component("consultant-finder-checkboxes", {
     checkForExistingQueryString: function() {
       if (window.location.search.indexOf(this.checkboxGroup) > -1) {
         const params = router.history.current.query[this.checkboxGroup];
+        console.log(params);
+        const paramsArray = params.split(",");
+        console.log(paramsArray);
+        //const param
+        //console.log(params);
 
-        if (Array.isArray(params)) {
-          for (var i = 0; i < params.length; i++) {
-            this.chosenConditions.push(params[i]);
+        if (Array.isArray(paramsArray)) {
+          console.log("is array");
+          for (var i = 0; i < paramsArray.length; i++) {
+            this.chosenConditions.push(paramsArray[i]);
           }
         } else {
-          this.chosenConditions.push(params);
+          this.chosenConditions.push(paramsArray);
         }
       }
     }
@@ -108,8 +114,8 @@ var app = new Vue({
   data: {},
   methods: {
     addQueryStrings: function(queryStringParam, queryString) {
-      var queryStringEncoded = queryString.isArray
-        ? queryString.join("-")
+      var queryStringEncoded = Array.isArray(queryString)
+        ? queryString.join(",")
         : queryString;
       router.push({
         path: window.location.search,
