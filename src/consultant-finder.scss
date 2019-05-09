@@ -1,0 +1,89 @@
+.consultant-finder { 
+  background: grey;
+
+  &__toolbar { 
+    background-color: white;
+    display: flex;
+    width:100%;
+    justify-content: space-between;
+  } 
+
+  &__toolbar-search {
+   text-align: center;
+   padding: 58px;
+    width: 50%;
+  }
+
+  &__toolbar-filter {
+    padding: 58px;
+     text-align: center;
+    width: 50%;
+  }
+
+  &__sorting-toolbar {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &__card {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &__card-expanded {
+    background-color: darkgrey;
+    padding: 40px 20px;
+    width: 100%;
+  }
+
+  &__card-ctas {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__card-tags {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  &__card-tags-title {
+    width: 100%;
+    display: flex;
+  }
+
+  &__card-tags-list {
+    width: 100%;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__card-tag {
+    background: grey;
+    padding: 5px;
+    margin: 5px;
+    list-style: none;
+
+    &:first-child {
+      margin-left: 0; 
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &--active {
+      background: hotpink;
+    }
+  }
+
+  &__multi-checkbox-item {
+    &--disabled {
+      color: red;
+    }
+  }
+
+}

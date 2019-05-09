@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Search</title>
+	<meta charset="UTF-8" />
+	<link href="http://hcadevelopmentupgrade.sc/dist/assets/CSS/style.min.css?v=1.7.14.0" rel="stylesheet" />
+	<link href="src/consultant-finder.scss" rel="stylesheet" />
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous" />
+</head>
+
+<body>
+	<!-- Toolbar -->
+	<div class="consultant-finder">
+		<consultant-finder-checkboxes inline-template checkbox-group="conditions" checkbox-items="">
+			<!-- BE to loop this. -->
+			<div class="consultant-finder__multi-checkbox">
+				<input class="consultant-finder__multi-checkbox-search" v-model="searchQuery">
+				<div class="consultant-finder__multi-checkbox-group" ref="checkboxGroups" id="Condition" :data-test="checkboxGroup">
+					<div class="consultant-finder__multi-checkbox-item" data-checkbox-id="cancer">
+						<input class="consultant-finder__checkbox" ref="cancer" type="checkbox" id="cancer" value="Cancer" v-model="chosenConditions" />
+						<label for="cancer">Cancer</label>
+					</div>
+					<div class="consultant-finder__multi-checkbox-item" data-checkbox-id="stress">
+						<input class="consultant-finder__checkbox" ref="stress" type="checkbox" id="stress" value="Stress" v-model="chosenConditions" />
+						<label for="stress">Stress</label>
+					</div>
+					<div class="consultant-finder__multi-checkbox-item" data-checkbox-id="fractures">
+						<input class="consultant-finder__checkbox" ref="fractures" type="checkbox" id="fractures" value="Fractures"
+						 v-model="chosenConditions" />
+						<label for="fractures">Fractures</label>
+					</div>
+				</div>
+			</div>
+			<!-- BE to loop this. End -->
+		</consultant-finder-checkboxes>
+		<br />
+
+
+		<consultant-finder-radio-buttons inline-template radio-group="gender">
+			<div class="consultant-finder__radio-buttons">
+				<div class="consultant-finder__radio-buttons-group" ref="radioGroups" id="Condition" :data-test="radioGroup">
+					<input type="radio" id="male" value="male" v-model="selectedRadioButtons" />
+					<label for="male">Male</label>
+					<input type="radio" id="female" value="female" v-model="selectedRadioButtons" />
+					<label for="female">Femlae</label>
+					<br />
+					<span>Chosen gender: {{ selectedRadioButtons }}</span>
+				</div>
+			</div>
+			<!-- gender options end -->
+		</consultant-finder-radio-buttons>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+	<script src="https://npmcdn.com/vue-router/dist/vue-router.js"></script>
+	<script src="http://hcadevelopmentupgrade.sc/dist/assets/js/libs/libs.js?v=1.7.14.0"></script>
+
+	<script type="text/javascript" src="http://hcadevelopmentupgrade.sc/dist/assets/js/main.min.js?v=1.7.14.0"></script>
+	<script>
+
+	</script>
+	<script src="src/index.js"></script>
+</body>
+
+</html>

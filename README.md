@@ -1,2 +1,0 @@
-# VueCheckboxfiltering
-Created with CodeSandbox
