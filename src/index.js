@@ -9,6 +9,17 @@ const selectors = {
   checkboxIdAttribute: "data-checkbox-id"
 };
 
+Vue.component("consultant-finder-distance-search", {
+  data: function() {
+    return {
+      userSuppliedLocation: "",
+      browserSuppliedLocation: "",
+      distanceRadius: "",
+      distanceMetricUnit: ""
+    };
+  }
+});
+
 Vue.component("consultant-finder-checkboxes", {
   props: ["checkboxGroup", "checkboxItems"],
   data: function() {
