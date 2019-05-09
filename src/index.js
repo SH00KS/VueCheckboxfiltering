@@ -9,10 +9,34 @@ const selectors = {
   checkboxIdAttribute: "data-checkbox-id"
 };
 
+Vue.component("consultant-finder-text-search", {
+  data: function() {
+    return {
+      searchQuery: ""
+    };
+  },
+  methods: {
+    setExistingFilters: function() {
+      if (window.location.search.indexOf("search") > -1) {
+        const params = router.history.current.query["search"];
+        this.searchQuery = params;
+      }
+    }
+  },
+  mounted: function() {
+    this.setExistingFilters();
+  },
+  watch: {
+    searchQuery: function() {
+      this.$parent.$options.methods.addQueryStrings("search", this.searchQuery);
+    }
+  }
+});
+
 Vue.component("consultant-finder-distance-search", {
   data: function() {
     return {
-      userSuppliedLocation: {},
+      userSuppliedLocation: "",
       lat: "",
       lng: "",
       city: "",
@@ -23,9 +47,13 @@ Vue.component("consultant-finder-distance-search", {
   },
   methods: {
     setExistingFilters: function() {
-      if (window.location.search.indexOf(this.radioGroup) > -1) {
-        const params = router.history.current.query[this.radioGroup];
-        this.selectedRadioButtons = params;
+      if (window.location.search.indexOf("city") > -1) {
+        const params = router.history.current.query["city"];
+        this.city = params;
+      }
+      if (window.location.search.indexOf("radius") > -1) {
+        const params = router.history.current.query["radius"];
+        this.distanceRadius = params;
       }
     }
   },
@@ -47,6 +75,8 @@ Vue.component("consultant-finder-distance-search", {
       parentMethods.addQueryStrings("lng", this.lng);
       parentMethods.addQueryStrings("city", this.city);
     });
+
+    this.setExistingFilters();
   },
   watch: {
     distanceRadius: function() {
@@ -75,9 +105,7 @@ Vue.component("consultant-finder-checkboxes", {
     checkForExistingQueryString: function() {
       if (window.location.search.indexOf(this.checkboxGroup) > -1) {
         const params = router.history.current.query[this.checkboxGroup];
-        console.log(params);
         const paramsArray = params.split(",");
-        console.log(paramsArray);
 
         if (Array.isArray(paramsArray)) {
           console.log("is array");

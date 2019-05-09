@@ -40,7 +40,7 @@
 			<div class="consultant-finder__distance-search">
 				<div class="consultant-finder__location-search">
 					<div class="consultant-finder__location-search-field">
-						<input ref="autocomplete" placeholder="Search" v-model="userSuppliedLocation" class="consultant-finder__location-search-input search-location"
+						<input ref="autocomplete" placeholder="Search" v-model="city" class="consultant-finder__location-search-input search-location"
 						 onfocus="value = ''" type="text" />
 					</div>
 					<div class="consultant-finder__location-browser-detect">
@@ -49,13 +49,17 @@
 				</div>
 				<div class="consultant-finder__location-radius">
 					<div><input class="consultant-finder__location-search-input" type="number" v-model="distanceRadius"></div>
-					{{ distanceRadius }}
 					<div>Mile(s)</div>
 				</div>
 			</div>
 			<div>Search</div>
 		</consultant-finder-distance-search>
 		<br />
+		<h3>Search box</h3>
+
+		<consultant-finder-text-search inline-template>
+			<input class="consultant-finder__text-search" v-model="searchQuery">
+		</consultant-finder-text-search>
 
 
 		<consultant-finder-radio-buttons inline-template radio-group="gender">
