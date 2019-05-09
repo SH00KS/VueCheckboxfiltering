@@ -73,17 +73,24 @@ Vue.component("consultant-finder-radio-buttons", {
   data: function() {
     return {
       radioButtons: [],
-      selectedRadioButtons: []
+      selectedRadioButtons: ""
     };
   },
   methods: {
     getRadioSelection: function() {
       const radioButtons = Array.from(this.$refs["radioGroups"].children);
-      this.checkboxes = radioButtons;
+      this.radioButtons = radioButtons;
+    },
+    setExistingFilters: function() {
+      if (window.location.search.indexOf(this.radioGroup) > -1) {
+        const params = router.history.current.query[this.radioGroup];
+        this.selectedRadioButtons = params;
+      }
     }
   },
   mounted: function() {
     this.getRadioSelection();
+    this.setExistingFilters();
   },
   watch: {
     selectedRadioButtons: function() {
